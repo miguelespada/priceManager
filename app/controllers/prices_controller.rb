@@ -12,8 +12,10 @@ class PricesController < ApplicationController
   end
 
   def randomize
-    Price.randomize params[:number].to_i
-    redirect_to prices_path, notice: 'Prices was successfully randomized.'
+    init_time = parse_time(params[:init_time])
+    end_time = parse_time(params[:end_time])
+    Price.randomize params[:number].to_i, init_time, end_time
+    redirect_to prices_path(params), notice: 'Prices was successfully randomized.'  
   end
 
   def next_price
@@ -59,5 +61,11 @@ class PricesController < ApplicationController
     # Only allow a trusted parameter "white list" through.
     def price_params
       params.require(:price).permit(:type, :enabled, :time)
+    end
+
+    def parse_time time_string
+      init_hour = time_string.split(':')[0].to_i
+      init_minute = time_string.split(':')[1].to_i
+      Time.now.change({ hour: init_hour, min: init_minute, sec: 0 })
     end
 end
