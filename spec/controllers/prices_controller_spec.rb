@@ -49,5 +49,10 @@ describe PricesController do
       get :next_price, {format: 'json'}
       assigns(:price).type.should eq "go pro"
     end
+
+    it "creates factory" do
+      price = create(:price, time: DateTime.new(2014, 9, 22, 20, 00, 00))
+      p price.time
+    end
   end
 end

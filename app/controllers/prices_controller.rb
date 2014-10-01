@@ -3,7 +3,7 @@ class PricesController < ApplicationController
 
   # GET /prices
   def index
-    @prices = Price.all.order_by(:time.asc)
+    @prices = Price.all
   end
 
 
@@ -12,14 +12,12 @@ class PricesController < ApplicationController
   end
 
   def randomize
-    init_time = parse_time(params[:init_time])
-    end_time = parse_time(params[:end_time])
-    Price.randomize params[:number].to_i, init_time, end_time
+    Price.randomize params[:number], params[:init_time], params[:end_time]
     redirect_to prices_path(params), notice: 'Prices was successfully randomized.'  
   end
 
   def next_price
-    Price.all.order_by(:time.asc).each do |price|
+    Price.all.each do |price|
       if price.time <= DateTime.now
         @price = price
         break
@@ -63,9 +61,4 @@ class PricesController < ApplicationController
       params.require(:price).permit(:type, :enabled, :time)
     end
 
-    def parse_time time_string
-      init_hour = time_string.split(':')[0].to_i
-      init_minute = time_string.split(':')[1].to_i
-      Time.now.change({ hour: init_hour, min: init_minute, sec: 0 })
-    end
 end
