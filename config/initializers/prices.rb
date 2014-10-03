@@ -1,0 +1,1 @@
+PRICES = YAML.load(File.open(Rails.root.join("config", "prices.yml")))["prices"]

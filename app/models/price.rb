@@ -8,12 +8,12 @@ class Price
   field :time, type: Time
 
 
-  def self.randomize number, init_time, end_time
+  def self.randomize type, number, init_time, end_time
     init_time = parse_time(init_time)
     end_time  = parse_time(end_time)
 
     number.times do 
-      FactoryGirl.create(:price, time: init_time + rand(0..elapsed_seconds(init_time, end_time)))
+      FactoryGirl.create(:price, type: type, time: init_time + rand(0..elapsed_seconds(init_time, end_time)))
     end
   end
 

@@ -1,4 +1,7 @@
 <%= form_tag randomize_prices_path do %>
+  <%= label_tag("Type:") %>
+  <%= select_tag :type, options_for_select(price_options) %>
+
   <%= label_tag("Number:") %>
   <%= select_tag :number, options_for_select((0..20).step(1).to_a.map{|s| ["#{s}", s]}) %>
 
@@ -9,7 +12,7 @@
 
  <%= text_field_tag('end_time', params[:end_time]) %>
 
-  <%= submit_tag("Radomize") %>
+  <%= submit_tag("Randomize") %>
 <% end %>
 
 <script>

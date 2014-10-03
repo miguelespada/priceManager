@@ -12,7 +12,7 @@ class PricesController < ApplicationController
   end
 
   def randomize
-    Price.randomize params[:number], params[:init_time], params[:end_time]
+    Price.randomize params[:type], params[:number].to_i, params[:init_time], params[:end_time]
     redirect_to prices_path(params), notice: 'Prices was successfully randomized.'  
   end
 

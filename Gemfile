@@ -59,4 +59,6 @@ group :test do
   gem "database_cleaner"
   gem "mongoid-rspec"
   gem "rspec-rails"
+  gem 'cucumber-rails', :require => false
+  gem "launchy"
 end

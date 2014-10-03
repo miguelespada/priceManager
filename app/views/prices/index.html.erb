@@ -1,8 +1,9 @@
-<h1>Listing prices</h1>
+<h1>Pull&Bear Price Manager</h1>
 <h5> <%= Time.now.localtime.strftime("%H:%M:%S") %> </h5>
 
 <%= link_to 'Next price', next_price_path(:format => :json) %>
 <%= link_to 'Delete all', delete_all_path, data: { confirm: 'Are you sure?' } %>
+
 
 <%= render "randomize_form" %>
 
@@ -19,9 +20,8 @@
 
   <tbody>
     <% @prices.each do |price| %>
-      <tr>
-        <td><%= price.type %></td>
-        <td><%= price.enabled %></td>
+      <tr class="<%= price.enabled ? 'enabled' : 'disabled' %> <%= price.type %>">
+        <td><%= pretty_print(price.type) %></td>
         <td><%= price.time.localtime.strftime("%H:%M:%S") %></td>
         <td><%= link_to 'Edit', edit_price_path(price) %></td>
         <td><%= link_to 'Destroy', price, method: :delete, data: { confirm: 'Are you sure?' } %></td>
