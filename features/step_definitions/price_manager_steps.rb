@@ -36,3 +36,13 @@ Then(/^I see the updated prices list$/) do
   expect(page).to have_selector("tr.enabled.headphones", count: 10)
   expect(page).to have_selector("tr.enabled.ipad", count: 1)
 end
+
+When(/^I delete all prices$/) do
+  click_on("Delete all")
+end
+
+Then(/^I see the empty prices list$/) do
+  within(:css, "#prices_list tbody") do
+    expect(page).to have_selector("tr", count: 0)
+  end
+end

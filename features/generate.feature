@@ -13,3 +13,7 @@ Feature: Price management
   Scenario: Add more prices
   When I add more prices
   Then I see the updated prices list
+
+  Scenario: Delete all prices
+  When I delete all prices
+  Then I see the empty prices list
