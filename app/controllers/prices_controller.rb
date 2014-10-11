@@ -16,7 +16,7 @@ class PricesController < ApplicationController
     redirect_to prices_path(params), notice: 'Prices was successfully randomized.'  
   end
 
-  def next_price
+  def next
     @price = Price.next_price
 
     respond_to do |format|

@@ -3,7 +3,8 @@ TestMongoId::Application.routes.draw do
 
   post "/prices/randomize", to: "prices#randomize", as: "randomize_prices"
   get "/prices/delete_all", to: "prices#delete_all", as: "delete_all"
-  get "/prices/next_price", to: "prices#next_price", as: "next_price"
+  get "/prices/next", to: "prices#next", as: "next"
+  get "/prices/disable", to: "prices#disable", as: "disable"
   
   resources :prices
 
