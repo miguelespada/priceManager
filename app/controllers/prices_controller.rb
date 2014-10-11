@@ -24,6 +24,8 @@ class PricesController < ApplicationController
       end
     end
 
+    @price = FactoryGirl.create(:price, :null) if @price.nil?
+    
     respond_to do |format|
       format.json {render json: @price}
     end
