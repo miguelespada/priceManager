@@ -40,6 +40,16 @@ describe "Price" do
       expect(Price.next_price.type).to eq "nothing"
       expect(Price.next_price.enabled).to eq false
     end
+
+
+    it "returns the correct available" do
+      my_time = Price.parse_time("11:06")
+      Price.randomize("dummy_price_2", 1, "11:04", "11:05")
+      Price.randomize("dummy_price", 1, "11:00", "11:03")
+      Time.stub(:now).and_return(my_time)
+      expect(Price.next_price.type).to eq "dummy_price"
+      expect(Price.next_price.enabled).to eq true
+    end
   end
   
 end

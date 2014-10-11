@@ -2,6 +2,7 @@ class Price
   include Mongoid::Document
 
   default_scope ->{ asc(:time) }
+  scope :enabled, ->{where(enabled: true)}
 
   field :type, type: String
   field :enabled, type: Mongoid::Boolean
@@ -29,6 +30,6 @@ class Price
   end
 
   def self.next_price
-    first && first.time < Time.now ? first : FactoryGirl.build(:price, :nothing)
+    enabled.first && enabled.first.time < Time.now ? first : FactoryGirl.build(:price, :nothing)
   end
 end
