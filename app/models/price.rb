@@ -3,6 +3,7 @@ class Price
 
   default_scope ->{ asc(:time) }
   scope :enabled, ->{where(enabled: true)}
+  scope :disabled, ->{where(enabled: false)}
 
   field :type, type: String
   field :enabled, type: Mongoid::Boolean
@@ -28,11 +29,26 @@ class Price
     Time.now.change({ hour: init_hour, min: init_minute, sec: 0 })
   end
 
-  def self.next_price
-    enabled.first && enabled.first.time < Time.now ? first : FactoryGirl.build(:price, :nothing)
+  def self.next
+    reorder_prices
+    enabled.first && enabled.first.open? ? enabled.first : FactoryGirl.build(:price, :nothing)
   end
 
+  def self.reorder_prices
+    last = enabled.last
+    enabled.each do |price|
+      if !price.open? and price.passed?
+        price.time = Time.now + rand(0..elapsed_seconds(Time.now, last.time))
+        price.save! 
+      end
+    end
+  end
+
+  def passed?
+    (Time.now - time) >= 0
+  end
+  
   def open?
-    (Time.now - time) < 60 
+    (Time.now - time) < 60 && passed?
   end
 end

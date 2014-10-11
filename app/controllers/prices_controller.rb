@@ -17,7 +17,7 @@ class PricesController < ApplicationController
   end
 
   def next
-    @price = Price.next_price
+    @price = Price.next
 
     respond_to do |format|
       format.json {render json: @price}
