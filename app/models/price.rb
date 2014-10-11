@@ -37,7 +37,7 @@ class Price
   def self.reorder_prices
     last = enabled.last
     enabled.each do |price|
-      if !price.open? and price.passed?
+      if price.missed?
         price.time = Time.now + rand(0..elapsed_seconds(Time.now, last.time))
         price.save! 
       end
@@ -50,5 +50,13 @@ class Price
   
   def open?
     (Time.now - time) < 60 && passed?
+  end
+
+  def missed?
+    !open? and passed?
+  end
+
+  def editable?
+    !open? and enabled
   end
 end
