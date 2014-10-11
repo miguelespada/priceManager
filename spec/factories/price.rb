@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :price do
     type  "Unknown"
-    time  DateTime.new(2014, 9, 22, 10, 00, 00)
+    time  Time.now
     enabled true
-    trait :null do
+    trait :nothing do
     	type "nothing"
     	enabled false
   	end

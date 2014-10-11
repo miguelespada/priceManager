@@ -17,15 +17,8 @@ class PricesController < ApplicationController
   end
 
   def next_price
-    Price.all.each do |price|
-      if price.time <= DateTime.now
-        @price = price
-        break
-      end
-    end
+    @price = Price.next_price
 
-    @price = FactoryGirl.create(:price, :null) if @price.nil?
-    
     respond_to do |format|
       format.json {render json: @price}
     end

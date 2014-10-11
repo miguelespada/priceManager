@@ -28,4 +28,7 @@ class Price
     Time.now.change({ hour: init_hour, min: init_minute, sec: 0 })
   end
 
+  def self.next_price
+    first && first.time < Time.now ? first : FactoryGirl.build(:price, :nothing)
+  end
 end
