@@ -1,5 +1,5 @@
 class PricesController < ApplicationController
-  before_action :set_price, only: [:show, :edit, :update, :destroy]
+  before_action :set_price, only: [:show, :edit, :update, :destroy, :disable]
 
   # GET /prices
   def index
@@ -22,6 +22,12 @@ class PricesController < ApplicationController
     respond_to do |format|
       format.json {render json: @price}
     end
+  end
+
+  def disable
+    @price.enabled = false
+    @price.save!
+    redirect_to prices_path, notice: 'Price was successfully disabled.'  
   end
 
   # PATCH/PUT /prices/1

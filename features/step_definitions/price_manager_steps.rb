@@ -9,12 +9,10 @@ When(/^I generate some prices$/) do
   fill_in('init_time', :with => '10:00') 
   fill_in('end_time', :with => '20:00') 
   click_button('Randomize')
-
 end
 
 Then(/^I see the prices list$/) do
   expect(page).to have_selector("tr.enabled.go_pro", count: 20)
-
 end
 
 When(/^I add more prices$/) do
