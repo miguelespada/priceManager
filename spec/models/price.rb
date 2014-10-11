@@ -51,5 +51,21 @@ describe "Price" do
       expect(Price.next_price.enabled).to eq true
     end
   end
+
+  describe "prices are open during 60s" do
+    it "detects open price" do
+      Price.randomize("dummy_price", 1, "11:04", "11:05")
+      my_time = Price.parse_time("11:05")
+      Time.stub(:now).and_return(my_time)
+      expect(Price.next_price.open?).to eq true
+    end
+
+    it "detects closed price" do
+      Price.randomize("dummy_price", 1, "11:04", "11:05")
+      my_time = Price.parse_time("11:06")
+      Time.stub(:now).and_return(my_time)
+      expect(Price.next_price.open?).to eq false
+    end
+  end
   
 end

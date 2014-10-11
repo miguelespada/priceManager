@@ -21,7 +21,7 @@
   <tbody>
     <% @prices.each do |price| %>
 
-      <tr id="price_<%= price.id %>"  class="<%= price.enabled ? 'enabled' : 'disabled' %> <%= price.type %>">
+      <tr id="price_<%= price.id %>"  class="<%= price.enabled ? 'enabled' : 'disabled' %> <%= price.type %> <%= "open" if price.open? %>">
         <td><%= pretty_print(price.type) %></td>
         <td><%= price.time.localtime.strftime("%H:%M:%S") %></td>
         <td><%= link_to 'Edit', edit_price_path(price) %></td>

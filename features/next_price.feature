@@ -8,6 +8,12 @@ Feature: Get next price
     When I get the next price
     Then I should receive the nothing price
 
+  @open
+  Scenario: Open prices
+    Given there are some prices
+    When a price is open
+    Then I should see the price is enabled and open
+
   @disable
   Scenario: disable price
     Given there are some prices

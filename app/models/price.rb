@@ -22,7 +22,6 @@ class Price
     (end_time - init_time).to_i
   end
 
-
   def self.parse_time time_string
     init_hour = time_string.split(':')[0].to_i
     init_minute = time_string.split(':')[1].to_i
@@ -31,5 +30,9 @@ class Price
 
   def self.next_price
     enabled.first && enabled.first.time < Time.now ? first : FactoryGirl.build(:price, :nothing)
+  end
+
+  def open?
+    (Time.now - time) < 60 
   end
 end
