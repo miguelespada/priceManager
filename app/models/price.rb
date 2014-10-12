@@ -35,13 +35,17 @@ class Price
   end
 
   def self.reorder_prices
-    last = enabled.last
     enabled.each do |price|
-      if price.missed?
-        price.time = Time.now + rand(0..elapsed_seconds(Time.now, last.time))
-        price.save! 
-      end
+      price.reorder enabled.last.time
     end
+  end
+
+  def reorder last_time
+    if missed?
+      self.time = Time.now + rand(60..Price.elapsed_seconds(Time.now, last_time))
+      self.save! 
+    end
+  rescue
   end
 
   def passed?
