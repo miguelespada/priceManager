@@ -30,11 +30,11 @@ class Price
   end
 
   def self.next
-    reorder_prices
+    reorder_missed
     enabled.first && enabled.first.open? ? enabled.first : FactoryGirl.build(:price, :nothing)
   end
 
-  def self.reorder_prices
+  def self.reorder_missed
     enabled.each do |price|
       price.reorder enabled.last.time
     end
