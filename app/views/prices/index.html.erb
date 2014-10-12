@@ -4,14 +4,12 @@
 <%= link_to 'Next price', next_path(:format => :json) %>
 <%= link_to 'Delete all', delete_all_path, data: { confirm: 'Are you sure?' } %>
 
-
 <%= render "randomize_form" %>
 
 <table id="prices_list">
   <thead>
     <tr>
       <th>Type</th>
-      <th>Enabled</th>
       <th>Time</th>
       <th></th>
       <th></th>
@@ -20,9 +18,8 @@
 
   <tbody>
     <% @prices.each do |price| %>
-
-      <tr id="price_<%= price.id %>"  class="<%= price.enabled ? 'enabled' : 'disabled' %> <%= price.type %> <%= "open" if price.open? %>">
-        <td><%= pretty_print(price.type) %></td>
+      <tr id="price_<%= price.id %>"  class="<%= price.enabled? ? 'enabled' : 'disabled' %> <%= price.type %> <%= "open" if price.open? %>">
+        <td><%= pretty_print(price.type) %> </td>
         <td><%= price.time.localtime.strftime("%H:%M:%S") %></td>
 
         <td><%= link_to 'Edit', edit_price_path(price) if price.editable? %></td>

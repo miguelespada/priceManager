@@ -48,19 +48,27 @@ class Price
   rescue
   end
 
+  def enabled?
+    enabled
+  end
+
   def passed?
     (Time.now - time) >= 0
   end
   
   def open?
-    (Time.now - time) < 60 && passed?
+    recent? && passed?
   end
+
+  def recent?
+    (Time.now - time) < 60
+  end 
 
   def missed?
     !open? and passed?
   end
 
   def editable?
-    !open? and enabled
+    !open? and enabled?
   end
 end

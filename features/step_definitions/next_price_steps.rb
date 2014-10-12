@@ -23,7 +23,8 @@ Then(/^I should see that the price was disabled$/) do
 end
 
 When(/^a price is open$/) do
-  @sample_price.time = Time.now.at_beginning_of_minute
+  @sample_price.time = Time.now
+  @sample_price.save!
 end
 
 Then(/^I should see the price is enabled and open$/) do

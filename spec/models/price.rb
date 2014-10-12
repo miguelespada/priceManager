@@ -89,5 +89,4 @@ describe "Price" do
       expect(price.time == Price.parse_time("11:00")).to eq true
     end
   end
-  
 end
