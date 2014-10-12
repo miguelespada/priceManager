@@ -1,7 +1,6 @@
 <h1>Pull&Bear Price Manager</h1>
 <h5> <%= Time.now.localtime.strftime("%H:%M:%S") %> </h5>
 
-<%= link_to 'Next price', next_path(:format => :json) %>
 <%= link_to 'Delete all', delete_all_path, data: { confirm: 'Are you sure?' } %>
 
 <%= render "randomize_form" %>
@@ -42,9 +41,3 @@
   color: gray;
 }
 </style>
-
-<script type="text/javascript">
-setTimeout(function(){
-   window.location.reload(1);
-}, 10000);
-</script>
