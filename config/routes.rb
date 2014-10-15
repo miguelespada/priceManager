@@ -6,6 +6,7 @@ TestMongoId::Application.routes.draw do
   get "/prices/reorder_missed", to: "prices#reorder_missed", as: "reorder_missed"
   get "/prices/next", to: "prices#next", as: "next"
   get "/prices/disable/:id", to: "prices#disable", as: "disable"
+  get "/prices/list", to: "prices#list", as: "list"
   
   resources :prices
 

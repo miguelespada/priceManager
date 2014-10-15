@@ -6,9 +6,14 @@ class PricesController < ApplicationController
     @prices = Price.all
   end
 
-
   # GET /prices/1/edit
   def edit
+  end
+
+  def list
+    respond_to do |format|
+      format.json {render json: PRICES}
+    end
   end
 
   def randomize
@@ -27,7 +32,7 @@ class PricesController < ApplicationController
   def disable
     @price.enabled = false
     @price.save!
-    redirect_to prices_path, notice: 'Price was successfully disabled.'  
+    render json: @price
   end
 
   # PATCH/PUT /prices/1
