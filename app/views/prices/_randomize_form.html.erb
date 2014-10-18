@@ -6,11 +6,11 @@
   <%= select_tag :number, options_for_select((0..20).step(1).to_a.map{|s| ["#{s}", s]}) %>
 
   <%= label_tag("Init:") %>
- 
  <%= text_field_tag('init_time', params[:init_time]) %>
-  <%= label_tag("End:") %>
 
+  <%= label_tag("End:") %>
  <%= text_field_tag('end_time', params[:end_time]) %>
+<br>
 
   <%= submit_tag("Randomize") %>
 <% end %>
