@@ -3,7 +3,7 @@
   <%= select_tag :type, options_for_select(price_options) %>
 
   <%= label_tag("Number:") %>
-  <%= select_tag :number, options_for_select((0..20).step(1).to_a.map{|s| ["#{s}", s]}) %>
+  <%= select_tag :number, options_for_select((0..100).step(1).to_a.map{|s| ["#{s}", s]}) %>
 
   <%= label_tag("Init:") %>
  <%= text_field_tag('init_time', params[:init_time]) %>

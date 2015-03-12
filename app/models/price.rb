@@ -38,6 +38,6 @@ class Price
   end
 
   def editable?
-    !open? and enabled?
+    enabled?
   end
 end
