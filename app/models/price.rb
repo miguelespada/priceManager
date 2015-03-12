@@ -30,42 +30,11 @@ class Price
   end
 
   def self.next
-    reorder_missed
     enabled.first && enabled.first.open? ? enabled.first : FactoryGirl.build(:price, :nothing)
   end
 
-  def self.reorder_missed
-    enabled.each do |price|
-      price.reorder enabled.last.time
-    end
-  end
-
-  def reorder last_time
-    if missed?
-      self.time = Time.now + rand(60..Price.elapsed_seconds(Time.now, last_time))
-      self.save! 
-    end
-  rescue
-  end
-
-  def enabled?
-    enabled
-  end
-
-  def passed?
-    (Time.now - time) >= 0
-  end
-  
   def open?
-    recent? && passed?
-  end
-
-  def recent?
-    (Time.now - time) < 60
-  end 
-
-  def missed?
-    !open? and passed?
+    (Time.now - time) >= 0
   end
 
   def editable?
