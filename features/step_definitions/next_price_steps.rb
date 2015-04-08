@@ -18,7 +18,6 @@ Given(/^I disable a price$/) do
 end
 
 Then(/^I should see that the price was disabled$/) do
-  expect(page).to have_content("successfully")
   expect(page).to have_selector("tr#price_#{@sample_price.id}.disabled")
 end
 
@@ -31,3 +30,9 @@ Then(/^I should see the price is enabled and open$/) do
   visit "/"
   expect(page).to have_selector("tr#price_#{@sample_price.id}.enabled.open")
 end
+
+Then(/^I should have a log entry$/) do
+  expect(Log.count).to be 1
+end
+
+

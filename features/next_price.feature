@@ -14,6 +14,12 @@ Feature: Get next price
     When a price is open
     Then I should see the price is enabled and open
 
+  @log
+  Scenario: Log next
+    Given there are some prices
+    When I get the next price
+    Then I should have a log entry
+
   @disable
   Scenario: disable price
     Given there are some prices

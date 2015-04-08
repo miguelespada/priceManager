@@ -23,7 +23,7 @@ class PricesController < ApplicationController
 
   def next
     @price = Price.next
-
+    Log.new_log
     respond_to do |format|
       format.json {render json: @price}
     end
