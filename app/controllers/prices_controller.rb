@@ -55,6 +55,11 @@ class PricesController < ApplicationController
     redirect_to prices_path, notice: 'Prices were successfully destroyed.'
   end
 
+  def autoload
+    Price.autoload
+    redirect_to prices_path, notice: 'Prices were loaded.'
+  end
+
   def reorder_missed
     Price.reorder_missed
     redirect_to prices_path, notice: 'Prices were successfully reordered.'

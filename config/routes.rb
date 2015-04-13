@@ -3,6 +3,7 @@ TestMongoId::Application.routes.draw do
 
   post "/prices/randomize", to: "prices#randomize", as: "randomize_prices"
   get "/prices/delete_all", to: "prices#delete_all", as: "delete_all"
+  get "/prices/autoload", to: "prices#autoload", as: "autoload"
   get "/prices/reorder_missed", to: "prices#reorder_missed", as: "reorder_missed"
   get "/prices/next", to: "prices#next", as: "next"
   get "/prices/disable/:id", to: "prices#disable", as: "disable"

@@ -40,4 +40,10 @@ class Price
   def editable?
     enabled?
   end
+
+  def self.autoload
+    PRICES.each do |price|
+      randomize(price, NUMBERS[price], INIT_TIMES[price], END_TIMES[price])
+    end
+  end
 end
