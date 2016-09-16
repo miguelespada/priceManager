@@ -1,10 +1,10 @@
 prices:
-  - sunglasses 50 18:00 22:00
-  - gopro 1 20:00 22:00
-  - ipad 1 20:00 22:00
-  - skateboard 9 18:00 22:00
-  - backpack 32 18:00 22:00
-  - phone-arm-holder 25 18:00 22:00
-  - 300-discount 8 18:00 22:00
-  - 500-discount 3 19:00 22:00
-  - 800-discount 2 19:00 22:00
+  - car 1 20:00 21:30
+  - glasses 50 17:00 22:00
+  - gopro 1 17:00 22:00
+  - ipad 1 17:00 22:00
+  - camera 25 17:00 22:00
+  - jacket 4 17:00 22:00
+  - printer 1 17:00 22:00
+  - bike 3 17:00 22:00
+  - skate 20 17:00 22:00
